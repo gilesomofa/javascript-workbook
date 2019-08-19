@@ -7,6 +7,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+//creating function to check different options for both hands
 function rockPaperScissors(hand1, hand2) {
             if  ( hand1 === hand2 ){
               return ( "its a tie" );
@@ -33,9 +34,6 @@ function rockPaperScissors(hand1, hand2) {
           }
         
         }
-
-
-
   //this should be a test of the program and should return a log of "hand1 wins"
   rockPaperScissors(hand1 = "rock" , hand2 = "scissors")
 
