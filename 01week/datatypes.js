@@ -1,66 +1,99 @@
-var d = new Date(2019,08, 13);
+//#1) defining a global variable d with the value of new Date();
+let d = new Date();
 
-
+//name my function and ask log to return passed in variable. 
 function displayDate(){
-  new Date();
-  console.log ("maybe you are getting this after all?")
+  console.log (d);
 }
-displayDate();
+//Invocation of function
+displayDate()
 
-let num = 14;
-let n = num.toString();
-function convertNoToString(){
-  console.log ("I am a string now");
+//#2) I set a variable called num to a value of 13
+let num = 13;
+
+//I name a function convertNoToString and set a parameter named num. In the scope of the function, I give a variable n a value of num.toString() with parentheses to pass in arguments. I ask cl 1 to log what n is and cl 2 to verify the typeof object it is
+
+function convertNoToString(num){
+  let n = num.toString();
+  console.log(n);
+  console.log (typeof (n));
 }
+//Invocation of my function with global variable passed in
+convertNoToString(num);
 
-convertNoToString();
+//I set a var name text and give a value using '', making what is inside a string.
+let text = '5';
 
-var text = '5';
-var pointNum = parseFloat(text);
-function stringToNumber(){
-  console.log ("string to number");
+//#3) I name my function stringToNumber and define parameter as text
+  function stringToNumber(text){
+
+//within the scope of this function, I name another variable pointNum and give it a parseFloat value (which converts strings to numbers. I use the text parameter here as well 
+
+let pointNum = parseFloat(text); 
+
+//I am asking for cl 1 to log the result of the conversion and for cl 2 to verify typeof object to verify
+  console.log (pointNum);
+  console.log (typeof (pointNum));
 }
-stringToNumber();
+//I invoke the function  
+stringToNumber(text);
 
-typeof true
-typeof null
-typeof object
-typeof 47
-typeof NaN
-typeof "Dinh"
 
-var sumOfTwoNumbers = (num1, num2) => {
-    return num1 + num2;
-  }
-  sumOfTwoNumbers(60, 150);
-
-  let x = 7
-let y = 8
-function myDoubleConfirmation()
-{if ( x < y );
-if (x > 3);
-console.log("I am a coder");
+//#4) this program names a function 'dataType' with parameter of (obj). I used the js typeof (obj) to determine what 
+//primitive datatype is being passed in. cl will print which type of obj is passed in
+function dataType (obj){
+  console.log (typeof (obj))
 }
-myDoubleConfirmation();
+//I invoke the function and can pass in different types of objects and the log will tell me what obj type they are
+dataType (25)
 
-let x = 5;
-let y = 5;
-function myOneOfTwo(){
-if ( x==y );
-if ( x > 6 );
-console.log("you are getting it")
+// #5) named a function and set up parameters as (num1, num2) and define equeation. 
+ function sumOfTwoNumbers(num1, num2) {
+  return num1 + num2;
 }
-myOneOfTwo();
+//Invocation of above function
+sumOfTwoNumbers(10000, 150);
 
-let x=5;
-  console.log("this is variable x which is 5")
-  let y=5;
-    console.log("this is variable y which is 5 as well")
+
+
+// #6)function myDoubleConfirmation({// Parameters //} x, y)
+function myDoubleConfirmation(x,y){
+
   
+//  I use the && in an if statement to check two states of variable x. If both are true, cl will return "dblconfirmed"   
+      if ( x < y  &&  x > 3 ){
+      return ("dblconfirmed");
+  
+  
+      }    
    
- function myDoubleFalse(){
-  if ( x > y );
-  if ( x < y );
-  console.log("numbers are equal therefore no go")
- } 
- myDoubleFalse();
+  }
+  //I invoke the function passing in two numbers for x,y
+  myDoubleConfirmation(4,8);
+  
+  
+  
+//#7) name a function and define parameters. use || sta
+
+function myOneOfTwo(x,y){ 
+  if ( x === y  ||  x > 3 ){
+    console.log("yes");
+  }
+}
+//passing in x y values and testing 
+myOneOfTwo(7,5);
+
+
+  
+//#8) x and y are global variables 
+  
+  let x = 4;
+  let y = 6;
+//i'm naming my function here and x and y become parameters. I used the !(bang) to state if both statements are "not true" the program will run
+function myDoubleFalse(x,y){
+ if  ( !(x > y) && x !== 5 )
+ //if my function has been written correctly, cl should bring back "none is true.""
+ console.log( "none is true" )
+} 
+// here, i'm "passing in" x and y as arguments
+myDoubleFalse(x,y);
