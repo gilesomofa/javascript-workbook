@@ -7,12 +7,35 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
+//creating function to check different options for both hands
 function rockPaperScissors(hand1, hand2) {
-
-  // Write code here
-
-}
+            if  ( hand1 === hand2 ){
+              return ( "its a tie" );
+  
+          }  else if  ( hand1 === "rock" && hand2 === "scissors" ){ 
+              return( "hand1 wins" );
+  
+          } else if ( hand1 === "scissors" && hand2 === "paper" ){
+              return ( "hand1 wins" );
+  
+          } else if ( hand1 === "paper" && hand2 === "rock" ){
+              return ( "hand1 wins" );
+  
+          }
+            else if ( hand2 === "rock" && hand1 === "scissors" ){
+              return ( "hand2 wins" );
+  
+          }
+            else if ( hand2  === "scissors" && hand2 === "paper" ){
+              return ( "hand2 wins" );
+          }
+            else if ( hand2 === "paper" && hand1 === "rock" ){
+              return ( "hand2 wins" );
+          }
+        
+        }
+  //this should be a test of the program and should return a log of "hand1 wins"
+  rockPaperScissors(hand1 = "rock" , hand2 = "scissors")
 
 function getPrompt() {
   rl.question('hand1: ', (answer1) => {
