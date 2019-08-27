@@ -23,66 +23,84 @@ function printBoard() {
   console.log('2 ' + board[2].join(' | '));
 }
 
+let board = [
+  [' ', ' ', ' '],
+  [' ', ' ', ' '],
+  [' ', ' ', ' ']
+];
 function horizontalWin() {
-  for (let i = 0; i < 3; i++){
+    if
+      ((board [0][0] === board [0][1]) &&
+       (board [0][0] === board [0][2])){
+        console.log('works');
+       }
+    
+    if
+      ((board [1][0] === board [1][1]) &&
+       (board [1][0] === board [1][2])){
+        console.log('got it');
+       }
+       
+    if
+      ((board [2][0] === board [2][1]) &&
+       (board [2][0] === board [2][2])){
 
-    if (board [0][0] !==  ' ' &&
-       board [0][0] === board [0][1] &&
-       board [0][0] === board [0][2] ||
-       board [1][0] !== ' ' &&
-       board [1][0] === board [1][1]&&
-       board [1][0] === board [1][2]||
-       board [2][0]!== ' ' &&
-       board [2][0] ===  board[2][1]&&
-       board [2][0] === board[2][2])      
-    {
-        return true
-      } else
-        return false
-      }
-      
-  }
+        console.log('3 times');
+       }
+       
+       function verticalWin() {
   
-  
-  
-  
-  // Your code here
+    if
+        ((board [0][0] === board [1][0])&&
+          (board [0][0] === board [2][0])) {
+          console.log('vertical victory')
+          }
+    
+   
+    if
+        ((board [0][1] === board [1][1])&&
+          (board [0][1] === board [2][1])) {
 
-  // Your code here
+          console.log('vertical victoryy')
+          }
+    
+      if
+        ((board [0][2] === board [1][2])&&
+          (board [0][2] === board [2][2])){
 
-function verticalWin() {
-  for (let i = 0; i < 3; i++){
-    if (board [0][0] !== ' ' &&
-        board [0][0] === [1][0]&&
-        board [0][0] === [2][0] ||
-        board [0][1] !== ' ' &&
-        board [0][1] === board [1][1]&&
-        board [0][1] === board [2][1] ||
-        board [0][2] !== ' ' &&
-        board [0][2] === board [1][2]&&
-        board [0][2] === board [2][2])
-  }
-} return true;
-} else false
-
-
+            console.log('vertical victoryyy')
+          }
+       }
+        verticalWin()
+       
 function diagonalWin() {
-  // Your code here
-    for (let i = 0; i < 3; i++){
-      if (board [0][0] !== ' ' &&
-          board [0][0] === board[1][1] &&
-          board [0][0] === board [2][2] ||
-          board [0][2] !== ' ' &&
-          board [0][2] === board [1][1] &&
-          board [0][2] === board [2][0]
-    }
-    return true;
-  } else false;
+  
+       if
+        ((board [0][0] === board [1][1])&&
+          (board [0][0] === board [2][2])) {
+
+            console.log('diagonal victory')
+          }
+
+       if
+        ((board [0][2] === board [1][1])&&
+          (board [0][2] === board [2][0])) {
+
+            console.log('diagonal victoryy')
+          }
+
+       }
+        diagonalWin()
 
     
 
 
 function checkForWin() {
+  if ((horizontalWin === true))||
+  if ((verticalWin === true))|| 
+  if((diagonalWin == true))
+  
+  
   //make sure, all types of wins are checked
 }
 
@@ -91,7 +109,6 @@ function ticTacToe(row, column) {
    //here should add piece, check for win and switch playerTurn
    board[row][column]= playerTurn;
 
-  
 }
 
 function getPrompt() {
@@ -141,4 +158,5 @@ if (typeof describe === 'function') {
 
   getPrompt();
 
+}
 }
