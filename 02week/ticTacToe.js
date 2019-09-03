@@ -14,6 +14,17 @@ let board = [
 
 let playerTurn = 'X';
 
+function switchPlayer(){
+  
+  
+if (playerTurn == 'X'){
+  playerTurn = 'O'
+}else {
+  playerTurn = 'X'
+}
+ 
+}
+
 function printBoard() {
   console.log('   0  1  2');
   console.log('0 ' + board[0].join(' | '));
@@ -23,39 +34,70 @@ function printBoard() {
   console.log('2 ' + board[2].join(' | '));
 }
 
+
+//this defines all possibilities of a horizontal win
 function horizontalWin() {
-  if (board [0][0] == playerTurn 
-  &&  board [0][1] == playerTurn 
-  &&  board [0][2] == playerTurn ){
-    return true
-  } else{
-    return false
-  }
+    if(
+      (board[0][0] === playerTurn && board[0][1]=== playerTurn && board[0][2] === playerTurn) ||
+      (board[1][0] === playerTurn && board[1][1]=== playerTurn && board[1][2] === playerTurn) ||
+      (board[2][0] === playerTurn && board[2][1]=== playerTurn && board[2][2] === playerTurn)){
+        return true
+       }
+      }
+  //this defines all possibilities of vertical wins   
+  function verticalWin() {
   
-  
-  
-  // Your code here
-}
+    if(
+      (board[0][0] === playerTurn && board[1][0]=== playerTurn && board[2][0] === playerTurn) ||
+      (board[0][1] === playerTurn && board[1][1]=== playerTurn && board[2][1] === playerTurn) ||
+      (board[0][2] === playerTurn && board[1][2]=== playerTurn && board[2][2] === playerTurn)){
+        return true
+       }
+      }
+    //this identifies the possibilities of diagonal wins   
+  function diagonalWin() {
+      if
+        ((board[0][0] === playerTurn && board[1][1] === playerTurn && board[2][2] === playerTurn)||
+        ( board[0][2] === playerTurn && board[1][1] === playerTurn && board[2][0] === playerTurn))
+         {
+            return true
+          }
 
-function verticalWin() {
-  // Your code here
-}
+       }
 
-function diagonalWin() {
-  // Your code here
-}
 
 function checkForWin() {
+    return (horizontalWin() ||verticalWin() || diagonalWin())
   //make sure, all types of wins are checked
 }
 
 function ticTacToe(row, column) {
+  
+  // console.log("row" + row, "column" + column)
+  if ((row >= 0 && row <=2) && (column >= 0 && column <=2)){
+    if (board[row][column]=== ' '){
+      board[row][column]=playerTurn
+      if (checkForWin()){
+        console.log('Congratulations' + playerTurn)
+      } else{
+        switchPlayer()
+      }
+    }else{
+        console.log('choose another spot please')
+      }
+    } else{
+      console.log('choose space within play area')
+    }
+  }   
+  
+  
+  
+  
+  
+  
   // make sure pieces are not placed on squares that already taken
    //here should add piece, check for win and switch playerTurn
-   board[row][column]= playerTurn;
-   
-  
-}
+  //  board[row][column]= playerTurn;
 
 function getPrompt() {
   printBoard();
@@ -103,5 +145,4 @@ if (typeof describe === 'function') {
 } else {
 
   getPrompt();
-
 }
