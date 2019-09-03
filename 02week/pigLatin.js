@@ -7,13 +7,20 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
-function pigLatin(word) {
-
-  // Your code here
-
+function pigLatin(str){
+  let firstVowel = str.match (/[aeiou]/);
+  let firstPosition = str.indexOf(firstVowel);
+  if(firstPosition > 0){
+    return str.slice(firstPosition) + str.slice (0, firstPosition) + 'ay';
+  }
+    return str + 'yay'; 
 }
-
+   
+ {
+}
+pigLatin("");
+  
+// }
 
 function getPrompt() {
   rl.question('word ', (answer) => {
@@ -21,7 +28,6 @@ function getPrompt() {
     getPrompt();
   });
 }
-
 // Tests
 
 if (typeof describe === 'function') {
