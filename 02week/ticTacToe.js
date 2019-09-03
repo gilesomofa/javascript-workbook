@@ -68,7 +68,6 @@ function horizontalWin() {
 
 function checkForWin() {
     return (horizontalWin() ||verticalWin() || diagonalWin())
-
   //make sure, all types of wins are checked
 }
 
@@ -99,8 +98,6 @@ function ticTacToe(row, column) {
   // make sure pieces are not placed on squares that already taken
    //here should add piece, check for win and switch playerTurn
   //  board[row][column]= playerTurn;
-
-
 
 function getPrompt() {
   printBoard();
@@ -148,5 +145,4 @@ if (typeof describe === 'function') {
 } else {
 
   getPrompt();
-
 }
