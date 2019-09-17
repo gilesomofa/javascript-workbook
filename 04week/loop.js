@@ -1,14 +1,14 @@
 //Use a do...while loop to console.log the numbers from 1 to 1000.
 
-// var result = "";
-// var i = 0;
+var result = "";
+var i = 0;
 
-// do {
-//   i = i + 1;
-//   result = result + i;
-// } while (i < 1000);
+do {
+  i = i + 1;
+  result = result + i;
+} while (i < 1000);
 
-// console.log(result);
+console.log(result);
 
 //Create an object (an array with keys and values) called person with the following data:
 let person = {
@@ -18,11 +18,7 @@ let person = {
     gender: "female"
 };
 
-
-
 // //Use a for...in loop and if statement to console.log the value associated with the key birthDate if the birth year is an odd number.
-
-
 
 
 const persons =[
@@ -44,13 +40,13 @@ function myFunction(){
   }
   }
   myFunction()
-//   const name = persons.map (function(persons){
-//     return persons.firstName
-//   })
-//     console.log(name);
+  const name = persons.map (function(persons){
+    return persons.firstName
+  })
+    console.log(name);
 
-//   const birthday = persons.map(persons => persons.birthDate);
-//   console.log(birthday);
+  const birthday = persons.map(persons => persons.birthDate);
+  console.log(birthday);
     
-//   const males = persons.filter(persons => persons.gender === "male");
-//   console.log(males);
+  const males = persons.filter(persons => persons.gender === "male");
+  console.log(males);
