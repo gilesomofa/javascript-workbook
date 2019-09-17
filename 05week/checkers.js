@@ -15,8 +15,10 @@ function Checker() {
 class Board {
   constructor() {
     this.grid = []
+
   }
   // method that creates an 8x8 array, filled with null values
+  
   createGrid() {
     // loop to create the 8 rows
     for (let row = 0; row < 8; row++) {
@@ -27,6 +29,32 @@ class Board {
       }
     }
   }
+}
+  class Board {
+    constructor(){
+      this.grid = [],
+      this.redPiece = "R";
+      this.blackPiece = "B";
+      this.checkers = [];
+    }
+}
+
+initializeGrid();{
+  for(let row1 = 0; row1 <3; row1++){
+    for(let col1 = 0; col1 < 8; col1++){
+      if (row1 % 2 === 0 && col1 % 2 === 1){
+        this.grid[row1][col1] = this.redPiece;
+      }
+    }
+  }
+}
+for(let row2 = 0; row2< 3; row2++){
+  for(let col2 = 0; col2 < 8; col2++){
+    if(row2 %2 === 1 && col2% 2 === 0){
+    this.grid[row2][col2] = this.blackPiece
+    }
+  }
+}
   viewGrid() {
     // add our column numbers
     let string = "  0 1 2 3 4 5 6 7\n";
@@ -53,7 +81,7 @@ class Board {
   }
 
   // Your code here
-}
+
 
 class Game {
   constructor() {
