@@ -10,6 +10,36 @@ let jobTypes = {
 };
 
 // Your code here
+class CrewMember{
+  constructor(name, job, specialSkill, ship){
+    this.name = name;
+    this.job = job;
+    this.specialSkill = specialSkill;
+    this.ship = ship;
+}
+
+enterShip(shipName){
+  this.ship = shipName;
+  shipName.crew.push(this)
+
+}
+}
+class Ship{
+  constructor(name, type, ability, crew){
+    this.name = name;
+    this.type = type;
+    this.ability = ability;
+    this.crew = crew;
+  }
+}
+
+missionStatement(shipAbility, shipName);{
+  this.ship = shipName;
+  shipName.crew.push(this);
+  this.ability = shipAbility;
+return true;
+}
+
 
 //tests
 if (typeof describe === 'function'){
@@ -57,3 +87,5 @@ if (typeof describe === 'function'){
     });
   });
 }
+
+
