@@ -8,7 +8,7 @@ let jobTypes = {
   commander: 'Main Ship',
   programmer: 'Any Ship!'
 };
-
+//I will comment on code later Dinh
 // Your code here
 class CrewMember{
   constructor(name, job, specialSkill, ship){
@@ -32,7 +32,8 @@ class Ship{
     this.crew = crew;
   }
 }
-
+//I'm stuck here and need to go back to the pre-work on passing through the functions.
+//Very confusing
 missionStatement(shipAbility, shipName);{
   this.ship = shipName;
   shipName.crew.push(this);
