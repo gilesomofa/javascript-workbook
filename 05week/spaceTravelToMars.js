@@ -38,6 +38,8 @@ missionStatement(shipAbility, shipName);{
   this.ship = shipName;
   shipName.crew.push(this);
   this.ability = shipAbility;
+  
+  if (this.ship = new Ship && new CrewMember > 0)  
 return true;
 }
 
