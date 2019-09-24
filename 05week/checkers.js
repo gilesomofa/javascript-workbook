@@ -144,8 +144,8 @@ class Game {
 
     }
     pseudoCodeBlack(){
-    if((blackPiece [endMovePiece [''] ] - blackPiece [startMovePiece['']] === whitePiece[endMovePiece] 
-    || blackPiece [endMovePiece ['']] - blackPiece [startMovePiece['']] === 9)){
+    if((blackPiece [endMovePiece [''] ] - blackPiece [startMovePiece['']] === 11)
+    || blackPiece [endMovePiece ['']] - blackPiece [startMovePiece['']] === 9){
       return true
     } else {
       console.log('this move is illegal')
@@ -154,20 +154,30 @@ class Game {
   //code for jump any piece should be able to move two spaces left or right if endMovePiece is occupied by opposing color
   //example black piece 52 (left) jumping white piece 41 landing at 30 (note 22 -11/2)
   //same black piece 52 jumping white piece at 43 landing at 34 (18 - 9/2)
+  //how do I null the illegal move code?????
   pseudoJumpBlackChecker(){
-    if ((blackPiece [endMovePiece ['']] - whitePiece [endMovePiece['']] === 11 || blackPiece [endMovePiece ['']] - whitePiece [endMovePiece['']] === 9))
-    &&
-    
-    {
+    if ((blackPiece [endMovePiece ['']] - whitePiece [endMovePiece['']] === 11) || ((blackPiece [endMovePiece ['']] - whitePiece [endMovePiece['']] === 9)
+    && ((blackPiece [endMovePiece ['']]) - 22 === null) || (blackPiece [endMovePiece ['']]) - 18 === null)){
       return true
     } else {
+    
+    return true
+    } else {
       return false
-        
+    console.log('cannot jump this piece');  
+    } 
+  }
+pseudoJumpWhiteChecker{
+    if ((whitePiece [endMovePiece ['']] - blackPiece [endMovePiece['']] === 11 || whitePiece [endMovePiece ['']] - blackPiece [endMovePiece['']] === 9))
+    &&  ((whitePiece [endMovePiece [''] ] - blackPiece [endMovePiece [''] ] === 22 || whitePiece [endMovePiece ['']] -blackPiece [endMovePiece ['']] === 18))
+    {
+return true
+ }  else {
+      return false   
+      console.log('cannot jump this piece');
     }
-    if(())
-  }
-  }
 }
+
 function getPrompt() {
   game.board.viewGrid();
   rl.question('which piece?: ', (whichPiece) => {
