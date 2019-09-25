@@ -21,7 +21,6 @@ class CrewMember{
 enterShip(shipName){
   this.ship = shipName;
   shipName.crew.push(this)
-
 }
 }
 class Ship{
@@ -33,14 +32,15 @@ class Ship{
   }
 }
 
-missionStatement(shipAbility, shipName);{
-  this.ship = shipName;
-  shipName.crew.push(this);
-  this.ability = shipAbility;
-return true;
+missionStatement = function(){
+  let crewMember1;
+  let crewMember2;
+  let mav;
+  let hermes;
+  if( CrewMember ===
+  let 
+  return true
 }
-
-
 //tests
 if (typeof describe === 'function'){
   describe('CrewMember', function(){
