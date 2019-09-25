@@ -118,34 +118,37 @@ class Game {
     //return coordinates as an array
     let startMovePiece = start.split('')
     let endMovePiece = end.split('')
-    console.log(startMovePiece)
-    console.log(endMovePiece)
+    
    //similar to change player turn sets the endMovePiece x and y indices = to beginMovePiece x and y indices thus moving piece
-    this.board.grid[ endMovePiece[0] ][endMovePiece [1] ] = this.board.grid [ startMovePiece [0]] [startMovePiece[1] ]
+    if(whiteLegalMove() || blackLegalMove()){this.board.grid[ endMovePiece[0] ][endMovePiece [1] ] = this.board.grid [ startMovePiece [0]] [startMovePiece[1] ]
     //clears out the startMovePiece x and y indices
     this.board.grid[startMovePiece [0]] [startMovePiece [1] ] = null
   }
-  illegalMove(){
+}
+  // illegalMove(){
     //using 9 and 11 we are going to define legal moves for Black and White pieces respectively
-    //white pieces moving forward and left example 01 moves to 12 difference is 11
-    //white pieces moving forward and right example 03 to 12 difference is 9 
+    //white pieces moving forward and left example start pos 01 moves to end pos 12 difference is 11
+    //white pieces moving forward and right example start pos 03 to end pos 12 difference is 9 
     //as white moves, the numbers increase
 
-    //black pieces moving forward to left example 52 to 41 difference = 11
-    //black pieces moving forward to right example 52 to 43 difference = 9
+    //black pieces moving forward to left example start pos 52 to end pos 41 difference = 11
+    //black pieces moving forward to right example start pos 52 to end pos 43 difference = 9
     //as black moves forward numbers decrease
-    pseudoCodeWhite(){
+    whiteLegalMove(){
     //need to convert indices
-      if ((whitePiece [startMovePiece [''] ]- whitePiece [endMovePiece[''] ] === 9 || whitePiece [startMovePiece [''] ]- whitePiece [endMovePiece [''] ]=== 11)){
+      if ((whitePiece [endMovePiece [''] ]- whitePiece [startMovePiece[''] ] === 9 
+      || 
+          whitePiece [endMovePiece [''] ]- whitePiece [startMovePiece [''] ]=== 11)){
       return true
     }else {
       console.log('this move is illegal');
     }
 
     }
-    pseudoCodeBlack(){
-    if((blackPiece [endMovePiece [''] ] - blackPiece [startMovePiece['']] === 11)
-    || blackPiece [endMovePiece ['']] - blackPiece [startMovePiece['']] === 9){
+    blackLegalMove(){
+    if((blackPiece [startMovePiece [''] ] - blackPiece [endMovePiece['']] === 11)
+    || 
+        blackPiece [startMovePiece ['']] - blackPiece [endMovePiece['']] === 9){
       return true
     } else {
       console.log('this move is illegal')
@@ -155,28 +158,71 @@ class Game {
   //example black piece 52 (left) jumping white piece 41 landing at 30 (note 22 -11/2)
   //same black piece 52 jumping white piece at 43 landing at 34 (18 - 9/2)
   //how do I null the illegal move code?????
-  pseudoJumpBlackChecker(){
-    if ((blackPiece [endMovePiece ['']] - whitePiece [endMovePiece['']] === 11) || ((blackPiece [endMovePiece ['']] - whitePiece [endMovePiece['']] === 9)
-    && ((blackPiece [endMovePiece ['']]) - 22 === null) || (blackPiece [endMovePiece ['']]) - 18 === null)){
-      return true
-    } else {
-    
+  
+    //This code needs to move a white or black checker through 18 or 22 over the opposing color
+    // So, something like this: if (whiteLegalMove() || blackLegalMove()) && whitePiece[endMovePiece === blackPIece[endMovePiece]] && this.endMovePiece + 9 ||  this.endMovePiece + 11 === null){
+    // moveChecker and null space then moveChecker + 9 or + 11 (careful, need one for each color as black's and white's numbers increase or decrease as they move forward)
+
+    //if (whiteLegalMove() && whitepiece [endMovePiece['']] === blackpiece[endMovePiece['']]){
+     // return true
+    // } else {
+   // return false
+   // }
+   
+   //"B" = null
+   jumpWhitePiece(){
+    while (whiteLegalMove() && (("W" [endMovePiece['']] === "B"[endMovePiece['']])
+      (("W" [endMovePiece [''] ] - "W" [startMovePiece[''] ] === 18 
+    || 
+       ("W" [endMovePiece [''] ] - "W" [startMovePiece [''] ] === 22))
+      {
     return true
-    } else {
-      return false
-    console.log('cannot jump this piece');  
-    } 
+  } else {
+    console.log('this move is illegal');
   }
-pseudoJumpWhiteChecker{
-    if ((whitePiece [endMovePiece ['']] - blackPiece [endMovePiece['']] === 11 || whitePiece [endMovePiece ['']] - blackPiece [endMovePiece['']] === 9))
-    &&  ((whitePiece [endMovePiece [''] ] - blackPiece [endMovePiece [''] ] === 22 || whitePiece [endMovePiece ['']] -blackPiece [endMovePiece ['']] === 18))
-    {
-return true
- }  else {
-      return false   
-      console.log('cannot jump this piece');
-    }
-}
+
+  }
+
+   }
+  //} else {
+   // return false
+   
+  //}
+  // }
+  pseudoJumpBlackChecker(){
+  //if (blackLegalMove()) && blackPiece [endMovePiece['']] === whitepiece[endMovePiece['']]{
+  //   return true
+  // } else {
+  //   return false
+  // }
+  // }
+  //if(blackLegalMove x 2 === null){
+  //   return true
+  //"W" = null
+  // } else{
+  //   return false
+  
+  // }
+  // }
+   // }
+
+    
+
+
+  //   ((blackPiece [endMovePiece ['']] - whitePiece [endMovePiece['']] === 11) || ((blackPiece [endMovePiece ['']] - whitePiece [endMovePiece['']] === 9)
+  //  lo&& ((blackPiece [endMovePiece ['']]) - 22 === null) || (blackPiece [endMovePiece ['']]) - 18 === null)){
+  //     return true
+      
+  //   } else {
+  //     return false
+  //   console.log('cannot jump this piece');  
+  //   } 
+  
+
+
+
+
+
 
 function getPrompt() {
   game.board.viewGrid();
