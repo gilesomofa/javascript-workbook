@@ -8,7 +8,7 @@ let jobTypes = {
   commander: 'Main Ship',
   programmer: 'Any Ship!'
 };
-//I will comment on code later Dinh
+//Create a class named CrewMember with a constructor
 // Your code here
 class CrewMember{
   constructor(name, job, specialSkill, ship){
@@ -17,13 +17,14 @@ class CrewMember{
     this.specialSkill = specialSkill;
     this.ship = ship;
 }
-
+//assign a crew member to a ship
 enterShip(shipName){
   this.ship = shipName;
   shipName.crew.push(this)
 
 }
 }
+//create class for ship
 class Ship{
   constructor(name, type, ability, crew){
     this.name = name;
