@@ -1,0 +1,9 @@
+/* each div will have ul and li which will be buttons that will inherit names of the People or draftable
+playes and so on when they are clicked. Hover states will need to be placed on each button in 
+each div with the appropriate message. 
+
+For example, when I hover on a button in people, an alert should 
+say "click this to move person to draftable" when clicked, the name should null in people and 
+occupy place in appropriate team class
+
+when I hover on a draftable an alert should pop up asking to click red team or blue team */
