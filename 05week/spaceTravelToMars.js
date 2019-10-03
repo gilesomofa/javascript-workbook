@@ -21,7 +21,6 @@ class CrewMember{
 enterShip(shipName){
   this.ship = shipName;
   shipName.crew.push(this)
-
 }
 }
 class Ship{
@@ -88,3 +87,5 @@ if (typeof describe === 'function'){
     });
   });
 }
+
+
