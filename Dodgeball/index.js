@@ -40,7 +40,7 @@
 //              if(click red button){
 //                  extend red team class with this object && null object in draftable
 //              }
-//         When click on object in draftable class then transfer data to Red or Blue Team
+//         When click on object in draftable class then print data to Red or Blue Team
 
 
 
