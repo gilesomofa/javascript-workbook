@@ -158,21 +158,65 @@ const arrOfPeople = [
     arrOfPeople.splice(index, 1)
     console.log(arrOfPeople, listOfPlayers)
     listPeopleChoices()
+    listTeamChoicesBlue()
+    listTeamChoicesRed()
   }
 
   const listTeamChoicesBlue = ()=> {
         const listElement = document.getElementById('player')
-        arrOfPlayers.map(person => {
+        listElement.innerHTML = ""
+        listOfPlayers.map(person => {
             const li = document.createElement("li")
             const button = document.createElement("button")
             button.innterHTML = "Make Teammate"
             button.addEventListener('click', function() {makeBlueTeammate(person.id)})
             li.appendChild(button)
-            li.appendChild(document.createTextNode(person.name + " - " + person.team))
-            listElement.append(li)
+            li.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
+            listElement.append(li) 
         })
             }
             const makeBlueTeammate = (id) =>{
-                console.log(`li ${id} is on the blue team`)
+               let index
+               for(let i= 0; i<listOfPlayers.length; i++){
+                 if(listOfPlayers [i].id ===id){
+                   index = i
+                 }
+               } 
+               listTeamChoicesBlue.push(listOfPlayers[index])
+               listOfPlayers.splice(index, 1)
+              console.log(listOfPlayers, listTeamChoicesBlue)
+              listPeopleChoices()
+              listTeamChoicesBlue()
+              listTeamChoicesRed()
+           
+      }
+
+
+      const listTeamChoicesRed = ()=> {
+        const listElement = document.getElementById('player')
+        listElement.innerHTML = ""
+        listOfPlayers.map(person => {
+            const li = document.createElement("li")
+            const button = document.createElement("button")
+            button.innterHTML = "Make Teammate"
+            button.addEventListener('click', function() {makeBlueTeammate(person.id)})
+            li.appendChild(button)
+            li.appendChild(document.createTextNode(person.name + " - " + person.skillSet))
+            listElement.append(li) 
+        })
+            }
+            const makeRedTeammate = (id) =>{
+               let index
+               for(let i= 0; i<listOfPlayers.length; i++){
+                 if(listOfPlayers [i].id ===id){
+                   index = i
+                 }
+               } 
+               listTeamChoicesRed.push(listOfPlayers[index])
+               listOfPlayers.splice(index, 1)
+              console.log(listOfPlayers, listTeamChoicesRed)
+              listPeopleChoices()
+              listTeamChoicesBlue()
+              listTeamChoicesRed()
            
       }
