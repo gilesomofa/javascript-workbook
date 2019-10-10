@@ -10,19 +10,16 @@ const rl = readline.createInterface({
 
 function Checker() {
   // Your code here
-} 
-  // method that creates an 8x8 array, filled with null values
+}
+// method that creates an 8x8 array, filled with null values
 
-  class Board {
-    constructor(grid, whitePiece, blackPiece, checkers){
-      this.grid = [];
-      this.whitePiece = "W";
-      this.blackPiece = "B";
-      this.checkers = "checkers";
-            }
-    
-
-  
+class Board {
+  constructor(grid, whitePiece, blackPiece, checkers) {
+    this.grid = [];
+    this.whitePiece = "W";
+    this.blackPiece = "B";
+    this.checkers = "checkers";
+  }
   viewGrid() {
     // add our column numbers
     let string = "  0 1 2 3 4 5 6 7\n";
@@ -47,7 +44,7 @@ function Checker() {
     }
     console.log(string);
   }
-  
+
   createGrid() {
     // loop to create the 8 rows
     for (let row = 0; row < 8; row++) {
@@ -58,52 +55,44 @@ function Checker() {
       }
     }
   }
-   initializeGrid(){
+  initializeGrid() {
     //this code places white pieces on everyother space on first and third whiteSide row
-    for(let row1 = 0; row1 <3; row1++){
-      for(let col1 = 0; col1 < 8; col1++){
-        if (row1 % 2 === 0 && col1 % 2 === 1){
+    for (let row1 = 0; row1 < 3; row1++) {
+      for (let col1 = 0; col1 < 8; col1++) {
+        if (row1 % 2 === 0 && col1 % 2 === 1) {
           this.grid[row1][col1] = this.whitePiece;
         }
       }
     }
 
-  //this code places white pieces on everyother space on second whiteSide row
-  for(let row2 = 0; row2 <3; row2++){
-    for(let col2 = 0; col2 < 8; col2++){
-      if (row2 % 2 === 1 && col2 % 2 === 0){
-        this.grid[row2][col2] = this.whitePiece;
+    //this code places white pieces on everyother space on second whiteSide row
+    for (let row2 = 0; row2 < 3; row2++) {
+      for (let col2 = 0; col2 < 8; col2++) {
+        if (row2 % 2 === 1 && col2 % 2 === 0) {
+          this.grid[row2][col2] = this.whitePiece;
+        }
+      }
+    }
+    //this code places black pieces on everyother space on first and third blackSide row
+    for (let row3 = 5; row3 < 8; row3++) {
+      for (let col3 = 0; col3 < 8; col3++) {
+        if (row3 % 2 === 1 && col3 % 2 === 0) {
+          this.grid[row3][col3] = this.blackPiece;
+        }
+      }
+    }
+
+    //places black pieces on everyother space on second blackSide row
+    for (let row4 = 5; row4 < 8; row4++) {
+      for (let col4 = 0; col4 < 8; col4++) {
+        if (row4 % 2 === 0 && col4 % 2 === 1) {
+          this.grid[row4][col4] = this.blackPiece;
+        }
       }
     }
   }
-//this code places black pieces on everyother space on first and third blackSide row
-  for(let row3 = 5; row3 <8; row3++){
-  for(let col3 = 0; col3 < 8; col3++){
-    if (row3 % 2 === 1 && col3 % 2 === 0){
-      this.grid[row3][col3] = this.blackPiece;
-    }
-  }
 }
-   
-//places black pieces on everyother space on second blackSide row
-for(let row4 = 5; row4 <8; row4++){
-for(let col4 = 0; col4 < 8; col4++){
-  if (row4 % 2 === 0 && col4 % 2 === 1){
-    this.grid[row4][col4] = this.blackPiece;
-  }
-}
-}
-}
-  }
-  // Your code here
-//to move checkers, i will need to be able to move any piece diagonally in either direction
 
-//can use the pattern of 9s and 11s to allow pieces to move to "legal" spaces
-//(B) right -9 or left -11 (W) right + 9 (W) + left 11
-
-//we need to identify legal spaces and incorporate jumps
-//apply an extend class for crowns and their movements
-//
 
 class Game {
   constructor() {
@@ -113,116 +102,126 @@ class Game {
     this.board.createGrid();
     this.board.initializeGrid();
   }
-  //establishes from where to where
-  moveChecker(start, end){
+  //to move checkers, i will need to be able to move any piece diagonally in either direction
+
+//using 9 and 11 we are going to define legal moves for Black and White pieces respectively
+//white pieces moving forward and left example start pos 01 moves to end pos 12 difference is 11
+//white pieces moving forward and right example start pos 03 to end pos 12 difference is 9 
+//as white moves, the numbers increase
+
+//black pieces moving forward to left example start pos 52 to end pos 41 difference = 11
+//black pieces moving forward to right example start pos 52 to end pos 43 difference = 9
+//as black moves forward numbers decrease
+  whiteLegalMove(start, end) {
+    //need to convert to integer  to be able to access indices to specific places on board
+    let startPos = start.split('')
+    let startInt = parseInt(start)
+    let endInt = parseInt(end)
+    let endPos = end.split('')
+    //defines legal or illegal move for white pieces
+    if (this.board.grid[startPos[0]][startPos[1]] === this.board.whitePiece) {
+      if (endInt - startInt === 9 || endInt - startInt === 11) {
+        if (this.board.grid[endPos[0]][endPos[1]] == null) {
+          return true
+        } else {
+          console.log("can't move here")
+          return false
+        }
+      }
+    }
+  }
+  blackLegalMove(start, end) {
+    //need to convert indices to be able to access specific places on board
+    let startPos = start.split('')
+    let endPos = end.split('')
+    let startInt = parseInt(start)
+    let endInt = parseInt(end)
+    //defines legal/illegal moves for black pieces
+    if (this.board.grid[startPos[0]][startPos[1]] === this.board.blackPiece) {
+      if (endInt - startInt === -9 || endInt - startInt === -11) {
+        if (this.board.grid[endPos[0]][endPos[1]] == null) {
+          return true
+        } else {
+          console.log("can't move here")
+          return false
+        }
+      }
+    }
+  }
+
+  moveChecker(start, end) {
     //return coordinates as an array
     let startMovePiece = start.split('')
     let endMovePiece = end.split('')
-    
-   //similar to change player turn sets the endMovePiece x and y indices = to beginMovePiece x and y indices thus moving piece
-    if(whiteLegalMove() || blackLegalMove()){this.board.grid[ endMovePiece[0] ][endMovePiece [1] ] = this.board.grid [ startMovePiece [0]] [startMovePiece[1] ]
-    //clears out the startMovePiece x and y indices
-    this.board.grid[startMovePiece [0]] [startMovePiece [1] ] = null
+
+    //similar to change player turn sets the endMovePiece x and y indices = to beginMovePiece x and y indices thus moving piece
+    if (this.whiteLegalMove(start, end) || this.blackLegalMove(start, end)) {
+      this.board.grid[endMovePiece[0]][endMovePiece[1]] = this.board.grid[startMovePiece[0]][startMovePiece[1]]
+      //clears out the startMovePiece x and y indices
+      this.board.grid[startMovePiece[0]][startMovePiece[1]] = null
+    }
+    this.jumpWhiteChecker(start, end)
+    this.jumpBlackChecker(start, end)
+  }
+
+  //code for jump any piece should be able to move two spaces left or right if endMovePiece is occupied by opposing color
+  //example black piece 52 (left) jumping white piece 41 landing at 30 
+  //same black piece 52 jumping white piece at 43 landing at 34 
+
+  //This code needs to move a white or black checker through 18 or 22 over the opposing color
+
+
+
+  jumpWhiteChecker(start, end) {
+    let startPos = start.split('')
+    let endPos = end.split('')
+    let startInt = parseInt(start)
+    let endInt = parseInt(end)
+    let midPoint;
+    let midPointString;
+    if (this.board.grid[startPos[0]][startPos[1]] === this.board.whitePiece) {
+      if (endInt - startInt === 18) {
+        //jump down to left
+        midPoint = startInt + 9
+      }
+      else if (endInt - startInt === 22) {
+        //jump down to right
+        midPoint = startInt + 11
+      }
+      midPointString = midPoint.toString().split('')
+      if (this.board.grid[midPointString[0]][midPointString[1]] === this.board.blackPiece) {
+        this.board.grid[midPointString[0]][midPointString[1]] = null
+        this.board.grid[endPos[0]][endPos[1]] = this.board.whitePiece
+        this.board.grid[startPos[0]][startPos[1]] = null
+
+      }
+    }
+  }
+  jumpBlackChecker(start, end) {
+    let startPos = start.split('')
+    let endPos = end.split('')
+    let startInt = parseInt(start)
+    let endInt = parseInt(end)
+    let midPoint;
+    let midPointString;
+    if (this.board.grid[startPos[0]][startPos[1]] === this.board.blackPiece) {
+      if (endInt - startInt === - 18) {
+        //jump up to left
+        midPoint = startInt - 9
+      }
+      else if (endInt - startInt === - 22) {
+        //jump up to right
+        midPoint = startInt - 11
+      }
+      midPointString = midPoint.toString().split('')
+      if (this.board.grid[midPointString[0]][midPointString[1]] === this.board.whitePiece) {
+        this.board.grid[midPointString[0]][midPointString[1]] = null
+        this.board.grid[endPos[0]][endPos[1]] = this.board.blackPiece
+        this.board.grid[startPos[0]][startPos[1]] = null
+      }
+    }
   }
 }
-  // illegalMove(){
-    //using 9 and 11 we are going to define legal moves for Black and White pieces respectively
-    //white pieces moving forward and left example start pos 01 moves to end pos 12 difference is 11
-    //white pieces moving forward and right example start pos 03 to end pos 12 difference is 9 
-    //as white moves, the numbers increase
-
-    //black pieces moving forward to left example start pos 52 to end pos 41 difference = 11
-    //black pieces moving forward to right example start pos 52 to end pos 43 difference = 9
-    //as black moves forward numbers decrease
-    whiteLegalMove(){
-    //need to convert indices
-      if ((whitePiece [endMovePiece [''] ]- whitePiece [startMovePiece[''] ] === 9 
-      || 
-          whitePiece [endMovePiece [''] ]- whitePiece [startMovePiece [''] ]=== 11)){
-      return true
-    }else {
-      console.log('this move is illegal');
-    }
-
-    }
-    blackLegalMove(){
-    if((blackPiece [startMovePiece [''] ] - blackPiece [endMovePiece['']] === 11)
-    || 
-        blackPiece [startMovePiece ['']] - blackPiece [endMovePiece['']] === 9){
-      return true
-    } else {
-      console.log('this move is illegal')
-    }
-  }
-  //code for jump any piece should be able to move two spaces left or right if endMovePiece is occupied by opposing color
-  //example black piece 52 (left) jumping white piece 41 landing at 30 (note 22 -11/2)
-  //same black piece 52 jumping white piece at 43 landing at 34 (18 - 9/2)
-  //how do I null the illegal move code?????
-  
-    //This code needs to move a white or black checker through 18 or 22 over the opposing color
-    // So, something like this: if (whiteLegalMove() || blackLegalMove()) && whitePiece[endMovePiece === blackPIece[endMovePiece]] && this.endMovePiece + 9 ||  this.endMovePiece + 11 === null){
-    // moveChecker and null space then moveChecker + 9 or + 11 (careful, need one for each color as black's and white's numbers increase or decrease as they move forward)
-
-    //if (whiteLegalMove() && whitepiece [endMovePiece['']] === blackpiece[endMovePiece['']]){
-     // return true
-    // } else {
-   // return false
-   // }
-   
-   //"B" = null
-   jumpWhitePiece(){
-    while (whiteLegalMove() && (("W" [endMovePiece['']] === "B"[endMovePiece['']])
-      (("W" [endMovePiece [''] ] - "W" [startMovePiece[''] ] === 18 
-    || 
-       ("W" [endMovePiece [''] ] - "W" [startMovePiece [''] ] === 22))
-      {
-    return true
-  } else {
-    console.log('this move is illegal');
-  }
-
-  }
-
-   }
-  //} else {
-   // return false
-   
-  //}
-  // }
-  pseudoJumpBlackChecker(){
-  //if (blackLegalMove()) && blackPiece [endMovePiece['']] === whitepiece[endMovePiece['']]{
-  //   return true
-  // } else {
-  //   return false
-  // }
-  // }
-  //if(blackLegalMove x 2 === null){
-  //   return true
-  //"W" = null
-  // } else{
-  //   return false
-  
-  // }
-  // }
-   // }
-
-    
-
-
-  //   ((blackPiece [endMovePiece ['']] - whitePiece [endMovePiece['']] === 11) || ((blackPiece [endMovePiece ['']] - whitePiece [endMovePiece['']] === 9)
-  //  lo&& ((blackPiece [endMovePiece ['']]) - 22 === null) || (blackPiece [endMovePiece ['']]) - 18 === null)){
-  //     return true
-      
-  //   } else {
-  //     return false
-  //   console.log('cannot jump this piece');  
-  //   } 
-  
-
-
-
-
-
 
 function getPrompt() {
   game.board.viewGrid();
@@ -236,7 +235,6 @@ function getPrompt() {
 
 const game = new Game();
 game.start();
-
 
 // Tests
 if (typeof describe === 'function') {
@@ -269,4 +267,3 @@ if (typeof describe === 'function') {
 } else {
   getPrompt();
 }
-  
